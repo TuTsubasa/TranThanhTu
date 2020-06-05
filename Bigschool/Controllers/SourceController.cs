@@ -1,5 +1,6 @@
 ﻿using Bigschool.Models;
 using Bigschool.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,21 @@ namespace Bigschool.Controllers
         }
         // GET: Source
         [Authorize]
-        public ActionResult Create()
+        [HttpPost]
+        public ActionResult Create(SourceViewModel viewModel)
         {
-            var viewModel = new SourceViewModel
-            {
-                Categories = _dbContext.Categories.ToList()
+            var source = new Source
+
+        {
+            LecturerID = User.Identity.GetUserId(),
+                Datetime = viewModel.GetDateTime(),
+                CategoryId = viewModel.Category,
+                Place=viewModel.Place
+                
             };
-            return View(viewModel);
+            _dbContext.Source.Add(source);
+            _dbContext.SaveChanges();
+            return RedirectToAction("index","Home");
         }
     }
 }
