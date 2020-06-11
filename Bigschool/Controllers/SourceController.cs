@@ -23,17 +23,17 @@ namespace Bigschool.Controllers
         [HttpPost]
         public ActionResult Create(SourceViewModel viewModel)
         {
-            var source = new Source
-
-        {
-            LecturerID = User.Identity.GetUserId(),
+            var s = new Source();
+            var source = new Source() {
+                LectrurerId = User.Identity.GetUserId(),
                 Datetime = viewModel.GetDateTime(),
                 CategoryId = viewModel.Category,
                 Place=viewModel.Place
                 
             };
-            _dbContext.Source.Add(source);
+            _dbContext.Sources.Add(source);
             _dbContext.SaveChanges();
+
             return RedirectToAction("index","Home");
         }
     }

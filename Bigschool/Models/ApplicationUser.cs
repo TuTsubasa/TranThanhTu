@@ -23,6 +23,7 @@ namespace Bigschool.Models
         public DbSet<Source> Courses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public object Source { get; internal set; }
+        public object Sources { get; internal set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
