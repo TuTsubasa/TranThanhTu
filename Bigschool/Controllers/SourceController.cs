@@ -21,8 +21,14 @@ namespace Bigschool.Controllers
         // GET: Source
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(SourceViewModel viewModel)
         {
+            if(!ModelState.IsValid)
+            {
+                viewModel.Categories = _dbContext.Categories.ToList();
+                return View("Create", viewModel);
+            }
             var s = new Source();
             var source = new Source() {
                 LectrurerId = User.Identity.GetUserId(),
@@ -31,7 +37,7 @@ namespace Bigschool.Controllers
                 Place=viewModel.Place
                 
             };
-            _dbContext.Sources.Add(source);
+            _dbContext.Courses.Add(source);
             _dbContext.SaveChanges();
 
             return RedirectToAction("index","Home");
