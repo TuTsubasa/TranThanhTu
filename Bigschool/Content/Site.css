@@ -22,3 +22,42 @@ select,
 textarea {
     max-width: 280px;
 }
+/*override the default bpootrap*
+*/
+.navbar-inverse{
+    background-color:#ff0000;
+    border-color:#ffffff;
+}
+.navbar-inverse .navbar-nav >li>a{
+    color:#ffffff;
+}
+.navbar-inverse .navbar-brand{
+    color:#ffffff;
+}
+.source{
+    list-style:none;
+}
+.source > li{
+    position:relative;
+    margin-bottom:30px;
+}
+.source > li .date{
+    text-align:center;
+    background-color:#ff0000;
+    color:#ffffff;
+    width:60px;
+    border-radius:8px;
+                       }
+.source > li .details{
+    position:absolute;
+    top:0;
+    left:70px;
+}
+.source > li .action{
+    display:none;
+    left:70px;
+    position:absolute;
+}
+.source > li.action{
+    display:block
+}

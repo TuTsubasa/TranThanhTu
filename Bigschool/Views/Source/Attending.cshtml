@@ -1,0 +1,41 @@
+﻿@model Bigschool.ViewModels.SourcesViewModel
+@{
+    ViewBag.Title = "Attending";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Attending</h2>
+<ul class="source">
+    @foreach (var source in Model.UpcomingSources)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @source.Datetime.ToString("MM")
+                </div>
+                <div class="Day">
+                    @source.Datetime.ToString("dd")
+                </div>
+            </div>
+            <div class="details">
+                <span class="lecturer">
+                    @source.Lecturer.Name
+                    @if (Model.ShowAction)
+                    {
+                        <button class="btn btn-default" btn-sm js-toggle-follow" data-user-id="@source.LectrurerId">Follow</button>
+                    }
+
+                </span>
+                <span class="category">
+
+                    @source.Category.Name
+                </span>
+                @if (Model.ShowAction)
+                {
+                    <button data-source-id="@source.Id" class="btn btn-default" btn-sm js-toggle-attendance">Going?</button>
+                }
+            </div>
+        </li>
+    }
+</ul>
+

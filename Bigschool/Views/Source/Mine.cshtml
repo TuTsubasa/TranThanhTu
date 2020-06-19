@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Bigschool.Models.Source>
+@{
+    ViewBag.Title = "Mine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mine</h2>
+<ul class="source">
+    @foreach (var source in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @source.Datetime.ToString("MM")
+                </div>
+                <div class="day">
+                    @source.Datetime.ToString("dd")
+                </div>
+            </div>
+            <div class="details">
+                <span class="lecturer">
+                    @source.Lecturer.Name
+
+                </span>
+                <span class="category">
+                    @source.Category.Name
+                </span>
+            </div>
+            <div class="action">
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+            </div>
+            <div class="action">
+                <a href="@Url.Action("Edit","Sources", new { id = source.Id})">
+                    Edit
+                </a>
+                <a href="">Delete</a>
+            </div>
+        </li>
+    }
+</ul>

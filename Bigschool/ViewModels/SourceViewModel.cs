@@ -9,6 +9,7 @@ namespace Bigschool.ViewModels
 {
     public class SourceViewModel
     {
+        public int Id { get; set; }
         [Required]
         public string Place { get; set; }
        
@@ -22,6 +23,11 @@ namespace Bigschool.ViewModels
         public byte Category { get; set; }
         [Required]
         public IEnumerable<Category> Categories { get; set; }
+        public string Heading { get; set; }
+        public string Action
+        {
+            get { return (Id != 0) ? "Update" : "Create"; }
+        }
         public DateTime GetDateTime()
         {
             return DateTime.Parse(string.Format("{0} {1}", Date, Time));
